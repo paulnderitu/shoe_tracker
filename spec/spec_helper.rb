@@ -14,8 +14,8 @@ require('./app')
 
 RSpec.configure do |config|
   config.after(:each) do
-    Distributor.all().each() do |store|
-      store.destroy()
+    Distributor.all().each() do |distributor|
+      distributor.destroy()
     end
     Brand.all().each() do |brand|
       brand.destroy()
