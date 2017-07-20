@@ -1,0 +1,14 @@
+<h1>Distributors</h1>
+ <% if @distributors == [] %>
+ <p>There are no distributors saved in the database yet.</p>
+ <% else %>
+ <ul>
+   <% @distributors.each() do |distributor| %>
+   <li><a href='/distributors/<%= distributor.id() %>'><%= distributor.name() %></a></li>
+   <% end %>
+ </ul>
+ <% end %>
+ <ul>
+   <li><a href='/distributors/new'>Add a New Distributor</a></li>
+   <li><a href='/'>Home</a></li>
+ </ul>

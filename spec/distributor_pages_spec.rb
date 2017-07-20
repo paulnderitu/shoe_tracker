@@ -14,5 +14,11 @@ describe('Add a Distributor path', {:type => :feature}) do
      click_button('Add Distributor')
      expect(page).to have_content('Wachira Shine')
    end
+
+   it ("allows uses to view  a list of distributors") do
+     Distributor.create({:name => "Wachira"})
+     visit('/distributors')
+     expect(page).to have_content("wachira")
+   end
   end
 end

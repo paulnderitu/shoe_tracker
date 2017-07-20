@@ -30,3 +30,8 @@ get('/distributors/:id') do
   @distributor = Distributor.find(params.fetch('id').to_i())
   erb(:distributor)
  end
+
+get('/distributors')do
+  @distributors = Distributor.all()
+  erb(:distributors)
+end
