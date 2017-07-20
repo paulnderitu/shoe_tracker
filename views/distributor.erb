@@ -1,0 +1,23 @@
+<h1><%= @distributor.name() %></h1>
+ <ul>
+   <li>Address: <%= @distributor.address() %></li>
+   <li>Telephone: <%= @distributor.tel() %></li>
+ </ul>
+ <li>Address:
+     <% if @distributor.address().!=("\n, ") %>
+     <%= @distributor.address() %>
+     <% else %>
+     no address for this distributor
+     <% end %>
+   </li>
+   <li>Telephone:
+     <% if @distributor.phone().!=('') %>
+     <%= @distributor.phone() %>
+     <% else %>
+     no Tel no for this distributor number given
+     <% end %>
+   </li>
+ <ul>
+   <li><a href='/distributors'>Back to Distributors</a></li>
+   <li><a href='/distributors/new'>Add a New Distributor</a></li>
+ </ul>
