@@ -1,7 +1,0 @@
-development:
-  adapter: postgresql
-  database: shoes_distributors_development
-
-test:
-  adapter: postgresql
-  database: shoes_distributors_test
