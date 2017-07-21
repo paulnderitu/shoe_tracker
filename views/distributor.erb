@@ -4,7 +4,7 @@
    <li>Telephone: <%= @distributor.tel() %></li>
  </ul>
  <li>Address:
-     <% if @distributor.address().!=("\n, ") %>
+     <% if @distributor.address().!=("\n, ").&(@distributor.address().!=('')) %>
      <%= @distributor.address() %>
      <% else %>
      no address for this distributor

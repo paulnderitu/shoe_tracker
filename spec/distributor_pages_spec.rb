@@ -2,7 +2,6 @@ require("spec_helper")
 
 describe('Distributor Pages Path', {:type => :feature}) do
 
-describe('Add a Distributor path', {:type => :feature}) do
    it('allows users to add a new store to the database') do
      visit('/')
      click_link('Add a New Distributor')
@@ -20,10 +19,7 @@ describe('Add a Distributor path', {:type => :feature}) do
      visit('/distributors')
      expect(page).to have_content("wachira")
    end
-  end
-end
 
-describe('Update a distributor path', {:type => :feature}) do
    it('allows users to update distributor information') do
      Distributor.create({:distributor_name => 'Wachira'})
      visit('/distributors')
@@ -33,4 +29,13 @@ describe('Update a distributor path', {:type => :feature}) do
      click_button('Update')
      expect(page).to have_content('Wachira Shine')
    end
- end
+
+   it('allows users to delete a store from the database') do
+       Distributor.create({:distributor_name => 'Wachira Shine'})
+       visit('/distributors')
+       click_link('Wachira')
+       click_link('Update Distributor Information')
+       click_button('Delete Distributor')
+       expect(page).to have_no_content('Wachira')
+     end
+  end

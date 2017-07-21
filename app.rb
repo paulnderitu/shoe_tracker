@@ -43,7 +43,7 @@ get('/distributors/:id/edit') do
 
  patch('/distributors/:id') do
    @distributor = Distributor.find(params.fetch('id').to_i())
-   distributor_name = params.fetch('distributor_name')
+   name = params.fetch('distributor_name')
    address = params[:address]
    tel = params[:tel]
    @distributor.update({:distributor_name => name, :address => address, :tel => tel})
@@ -53,3 +53,9 @@ get('/distributors/:id/edit') do
      erb(:errors)
    end
  end
+
+ delete('/distributors/:id') do
+    @distributor = Distributor.find(params.fetch('id').to_i())
+    @distributor.destroy()
+    redirect('/distributors')
+  end
