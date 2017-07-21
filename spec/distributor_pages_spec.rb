@@ -22,3 +22,15 @@ describe('Add a Distributor path', {:type => :feature}) do
    end
   end
 end
+
+describe('Update a distributor path', {:type => :feature}) do
+   it('allows users to update distributor information') do
+     Distributor.create({:distributor_name => 'Wachira'})
+     visit('/distributors')
+     click_link('Wachira')
+     click_link('Update Distributor Details')
+     fill_in('distributor_name', :with => 'Wachira Shine')
+     click_button('Update')
+     expect(page).to have_content('Wachira Shine')
+   end
+ end

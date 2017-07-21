@@ -35,3 +35,21 @@ get('/distributors')do
   @distributors = Distributor.all()
   erb(:distributors)
 end
+
+get('/distributors/:id/edit') do
+   @distributor = Distributor.find(params.fetch('id').to_i())
+   erb(:distributor_edit)
+ end
+
+ patch('/distributors/:id') do
+   @distributor = Distributor.find(params.fetch('id').to_i())
+   distributor_name = params.fetch('distributor_name')
+   address = params[:address]
+   tel = params[:tel]
+   @distributor.update({:distributor_name => name, :address => address, :tel => tel})
+   if @distributor.save()
+     redirect('/distributors/'.concat(@distributor.id().to_s()))
+   else
+     erb(:errors)
+   end
+ end
