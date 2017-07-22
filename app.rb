@@ -96,3 +96,8 @@ get('/distributors/:id/edit') do
    @brands = Brand.all()
    erb(:brands)
  end
+
+get ('brands/:id')do
+  @brand = Brand.find(params.fetch('id').to_i())
+  erb(:brand)
+end
