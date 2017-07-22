@@ -10,7 +10,7 @@ require('spec_helper')
  end
 
  describe('Add a brand to a store path', {:type => :feature}) do
-    it('allows the users to add brands to a distributor') do
+    it('allows the administrator to add brands to a distributor') do
       Brand.create({:name => 'Adidas'})
       visit('/distributors/new')
       fill_in('name', :with => 'Wachira')
@@ -18,6 +18,13 @@ require('spec_helper')
       click_button('Add Distributor')
       expect(page).to have_content('Adidas')
     end
+    it('allows the user to view all brands for a distributor') do
+     distributor = Distributor.create({:name => 'Wachira'})
+     distributor.brands().create({:name => 'Adidas'})
+     visit('/distributors')
+     click_link('Wachira')
+     expect(page).to have_content('Adidas')
+   end
   end
 
   describe('Add a brand when updating a distributor path', {:type => :feature}) do
