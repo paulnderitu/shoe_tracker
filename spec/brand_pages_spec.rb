@@ -19,3 +19,16 @@ require('spec_helper')
       expect(page).to have_content('Adidas')
     end
   end
+
+  describe('Add a brand when updating a distributor path', {:type => :feature}) do
+     it('allows the user to add a brand when updating distributor Details') do
+       Distributor.create(:name => 'Wachira')
+       Brand.create(:name => 'Adidas')
+       visit('/distributors')
+       click_link('Wachira')
+       click_link('Update distributor Details')
+       check('Adidas')
+       click_button('Update')
+       expect(page).to have_content('Adidas')
+     end
+  end

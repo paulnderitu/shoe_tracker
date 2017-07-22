@@ -40,6 +40,7 @@ end
 
 get('/distributors/:id/edit') do
    @distributor = Distributor.find(params.fetch('id').to_i())
+   @brands = Brand.all() - @distributor.brands()
    erb(:distributor_edit)
  end
 
@@ -48,7 +49,19 @@ get('/distributors/:id/edit') do
    name = params.fetch('distributor_name')
    address = params[:address]
    tel = params[:tel]
-   @distributor.update({:distributor_name => name, :address => address, :tel => tel})
+
+  new_brand_ids = params[:brand_ids]
+   all_brand_ids = []
+   @distributor.brands.each() do |brand|
+     all_brand_ids.push(brand.id())
+   end
+   if new_brand_ids
+     new_brand_ids.each() do |id|
+       all_brand_ids.push(id)
+     end
+   end
+
+  @distributor.update({:distributor_name => name, :address => address, :tel => tel, :brand_ids => all_brand_ids})
    if @distributor.save()
      redirect('/distributors/'.concat(@distributor.id().to_s()))
    else
