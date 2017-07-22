@@ -24,7 +24,7 @@ post('/distributors') do
   if @distributor.save()
     redirect('/distributors/'.concat(@distributor.id().to_s()))
   else
-    erb(:errors)
+    erb(:distributor_errors)
   end
 end
 
@@ -33,7 +33,7 @@ get('/distributors/:id') do
   erb(:distributor)
  end
 
-get('/distributors')do
+get('/distributors') do
   @distributors = Distributor.all()
   erb(:distributors)
 end
@@ -52,11 +52,11 @@ get('/distributors/:id/edit') do
 
   new_brand_ids = params[:brand_ids]
   remove_brand_ids = params[:remove_brand_ids]
-     if remove_brand_ids
-       remove_brand_ids.each() do |id|
-         @distributor.brands().destroy(Brand.find(id))
-       end
+    if remove_brand_ids
+     remove_brand_ids.each() do |id|
+       @distributor.brands().destroy(Brand.find(id))
      end
+    end
 
    all_brand_ids = []
    @distributor.brands.each() do |brand|
@@ -83,7 +83,7 @@ get('/distributors/:id/edit') do
   end
 
   post('/brands') do
-     name = params.fetch('brand_name')
+     name = params.fetch('name')
      @brand = Brand.create({:name => name})
      if @brand.save()
        redirect back
@@ -117,5 +117,4 @@ patch('/brands/:id') do
    @brand.destroy()
    redirect('/brands')
  end
-
- end
+end

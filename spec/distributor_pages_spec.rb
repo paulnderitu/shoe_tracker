@@ -15,12 +15,12 @@ describe('Distributor Pages Path', {:type => :feature}) do
    end
 
    it ("allows uses to view  a list of distributors") do
-     Distributor.create({:name => "Wachira"})
+     Distributor.create({:distributor_name => "Wachira"})
      visit('/distributors')
-     expect(page).to have_content("wachira")
+     expect(page).to have_content("Wachira")
    end
 
-   it('allows users to update distributor information') do
+   it('allows users to update distributor path') do
      Distributor.create({:distributor_name => 'Wachira'})
      visit('/distributors')
      click_link('Wachira')
@@ -30,11 +30,11 @@ describe('Distributor Pages Path', {:type => :feature}) do
      expect(page).to have_content('Wachira Shine')
    end
 
-   it('allows users to delete a store from the database') do
-       Distributor.create({:distributor_name => 'Wachira Shine'})
+   it('allows users to delete a distributor from the database') do
+       Distributor.create({:distributor_name => 'Wachira'})
        visit('/distributors')
        click_link('Wachira')
-       click_link('Update Distributor Information')
+       click_link('Update Distributor Details')
        click_button('Delete Wachira')
        expect(page).to have_no_content('Wachira')
      end

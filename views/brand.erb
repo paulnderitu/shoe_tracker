@@ -4,7 +4,7 @@
    <% if @brand.distributors.any? %>
    <ul>
      <% @brand.distributors.each() do |distributor| %>
-     <li><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>  <a href='/distributors/<%= distribiutor.id() %>'><%= distributor.name() %></a></li>
+     <li><a href='/distributors/<%= distribiutor.id() %>'><%= distributor.name() %></a></li>
      <% end %>
    </ul>
    <% else %>

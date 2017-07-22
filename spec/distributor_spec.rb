@@ -8,12 +8,12 @@ describe(Distributor) do
   end
 
   it("validates the length of the telephone number inserted to be 11 digits at most")  do
-    distributor = Distributor.new({:distributor_name => "wachira", :tel => "072588888888".*(12)})
+    distributor = Distributor.new({:distributor_name => "Wachira", :tel => "072588888888".*(12)})
     expect(distributor.save()).to(eq(false))
   end
   it('belongs to a brand') do
     brand = Brand.create({:name => 'Adidas'})
-       distributor = brand.distributors().new({:name => 'Wachira'})
+       distributor = brand.distributors().new({:distributor_name => 'Wachira'})
        expect(brand.distributors()).to(eq([distributor]))
     end
 

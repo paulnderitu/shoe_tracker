@@ -13,13 +13,13 @@ require('spec_helper')
     it('allows the administrator to add brands to a distributor') do
       Brand.create({:name => 'Adidas'})
       visit('/distributors/new')
-      fill_in('name', :with => 'Wachira')
+      fill_in('distributor_name', :with => 'Wachira')
       check('Adidas')
       click_button('Add Distributor')
       expect(page).to have_content('Adidas')
     end
     it('allows the user to view all brands for a distributor') do
-     distributor = Distributor.create({:name => 'Wachira'})
+     distributor = Distributor.create({:distributor_name => 'Wachira'})
      distributor.brands().create({:name => 'Adidas'})
      visit('/distributors')
      click_link('Wachira')
@@ -29,7 +29,7 @@ require('spec_helper')
 
   describe('Counterchecking brands when updating a distributor path', {:type => :feature}) do
      it('allows the user to add a brand when updating distributor Details') do
-       Distributor.create(:name => 'Wachira')
+       Distributor.create(:distributor_name => 'Wachira')
        Brand.create(:name => 'Adidas')
        visit('/distributors')
        click_link('Wachira')
@@ -40,7 +40,7 @@ require('spec_helper')
      end
 
   it('allows the user to remove a brand when updating store information') do
-    distributor = Distributor.create(:name => 'Wachira')
+    distributor = Distributor.create(:distributor_name => 'Wachira')
     distributor.brands().create(:name => 'Adidas')
     visit('/distributors')
     click_link('Wachira')
@@ -52,7 +52,7 @@ require('spec_helper')
 
     describe('Update a brand path', {:type => :feature}) do
        it('allows the user to view a brand page with distributor names') do
-         distributor = Distributor.create(:name => 'Wachira')
+         distributor = Distributor.create(:distributor_name => 'Wachira')
          distributor.brands().create(:name => 'Adidas')
          visit('/brands')
          click_link('Adidas')

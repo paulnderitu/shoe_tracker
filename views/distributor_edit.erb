@@ -1,4 +1,5 @@
-<h1>Update <%=@distrributor.name()%> Details</h1>
+<h1>Update <%=@distributor.name()%> Details</h1>
+
  <form action="/distributors/<%= @distributor.id() %>" method="post">
    <input type="hidden" name="_method" value="patch">
    <div class="form-group">
@@ -56,14 +57,15 @@
      </div>
      <% end %>
      <% else %>
-     <p>There are no more brands to add to <%= @store.name() %>
+     <p>There are no more brands to add to <%= @distributor.name() %>
      <% end %>
-   </div>
+
    <button type="submit" class="btn">Update</button>
  </form>
 
- <h3>Delete <%= @distributor.name() %> from Database:</h3>
-  <form action="/distributors/<%= @distributor.id() %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button type="submit" class="btn">Delete Distributor</button>
-  </form>
+ <form action="/distributors/<%= @distributor.id() %>" method="post">
+   <input type="hidden" name="_method" value="delete">
+   <button type="submit" class="btn">Delete  <%= @distributor.name() %> from Database</button>
+ </form>
+
+</div>
