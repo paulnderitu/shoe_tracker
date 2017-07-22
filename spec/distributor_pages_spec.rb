@@ -35,7 +35,7 @@ describe('Distributor Pages Path', {:type => :feature}) do
        visit('/distributors')
        click_link('Wachira')
        click_link('Update Distributor Information')
-       click_button('Delete Distributor')
+       click_button('Delete Wachira')
        expect(page).to have_no_content('Wachira')
      end
   end

@@ -91,3 +91,8 @@ get('/distributors/:id/edit') do
        erb(:brand_errors)
      end
    end
+
+   get('/brands') do
+   @brands = Brand.all()
+   erb(:brands)
+ end
