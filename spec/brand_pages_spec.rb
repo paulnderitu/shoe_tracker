@@ -61,14 +61,14 @@ require('spec_helper')
      end
 
     it('allows the user to edit a brand name') do
-    brand = Brand.create(:name => 'Adidas')
+   brand = Brand.create(:name => 'Adidas')
      visit('/brands')
      click_link('Adidas')
      fill_in('name', :with => 'Puma')
      click_button('Edit')
      expect(page).to have_content('Puma')
    end
-   
+
    it('allows the user to delete a brand from the database') do
      brand = Brand.create(:name => 'Adidas')
      visit('/brands')
