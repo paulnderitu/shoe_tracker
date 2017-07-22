@@ -8,6 +8,7 @@ get('/') do
 end
 
 get('/distributors/new') do
+  @brands = Brand.all()
     erb(:distributor_form)
 end
 
@@ -50,7 +51,7 @@ get('/distributors/:id/edit') do
    if @distributor.save()
      redirect('/distributors/'.concat(@distributor.id().to_s()))
    else
-     erb(:errors)
+     erb(:distributor_errors)
    end
  end
 
@@ -59,3 +60,13 @@ get('/distributors/:id/edit') do
     @distributor.destroy()
     redirect('/distributors')
   end
+
+  post('/brands') do
+     name = params.fetch('brand_name')
+     @brand = Brand.create({:name => name})
+     if @brand.save()
+       redirect back
+     else
+       erb(:brand_errors)
+     end
+   end
