@@ -11,6 +11,12 @@ describe(Distributor) do
     distributor = Distributor.new({:distributor_name => "wachira", :tel => "072588888888".*(12)})
     expect(distributor.save()).to(eq(false))
   end
+  it('belongs to a brand') do
+    brand = Brand.create({:name => 'Adidas'})
+       distributor = brand.distributors().new({:name => 'Wachira'})
+       expect(brand.distributors()).to(eq([distributor]))
+    end
+
 describe('Distributor#titlecase_name') do
   it ("converts the name to title case") do
     distributor = Distributor.create({:distributor_name => "wachira shine"})
