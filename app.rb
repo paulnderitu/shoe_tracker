@@ -19,7 +19,8 @@ post('/distributors') do
   building = params[:building]
   tel = params[:tel]
   address = "#{city}\n#{street}, #{building}"
-  @distributor = Distributor.create({:distributor_name => distributor_name, :address => address, :tel => tel})
+  brand_ids = params[:brand_ids]
+  @distributor = Distributor.create({:distributor_name => distributor_name, :address => address, :tel => tel, :brand_ids => brand_ids})
   if @distributor.save()
     redirect('/distributors/'.concat(@distributor.id().to_s()))
   else
