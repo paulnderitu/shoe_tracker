@@ -1,4 +1,5 @@
 class Distributor <ActiveRecord::Base
+  has_and_belongs_to_many(:brands)
   validates(:distributor_name, :presence => true)
   validates(:tel, :length => { :maximum => 11})
   before_save(:titlecase_distributor_name)
