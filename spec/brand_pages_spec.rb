@@ -68,4 +68,12 @@ require('spec_helper')
      click_button('Edit')
      expect(page).to have_content('Puma')
    end
+   
+   it('allows the user to delete a brand from the database') do
+     brand = Brand.create(:name => 'Adidas')
+     visit('/brands')
+     click_link('Adidas')
+     click_button('Delete Adidas')
+     expect(page).to have_no_content('Adidas')
+   end
   end
