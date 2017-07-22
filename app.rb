@@ -51,6 +51,13 @@ get('/distributors/:id/edit') do
    tel = params[:tel]
 
   new_brand_ids = params[:brand_ids]
+  remove_brand_ids = params[:remove_brand_ids]
+     if remove_brand_ids
+       remove_brand_ids.each() do |id|
+         @distributor.brands().destroy(Brand.find(id))
+       end
+     end
+
    all_brand_ids = []
    @distributor.brands.each() do |brand|
      all_brand_ids.push(brand.id())

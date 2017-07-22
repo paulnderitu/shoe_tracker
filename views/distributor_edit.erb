@@ -32,9 +32,10 @@
   <p>No brands assigned to this distributor currently.</p>
   <br>
   <% end %>
-  <ul>
+
   <div class="form-group">
     <% if @brands.any?() %>
+    <label>Add new Brands to<%= @distributor.name() %>:</label>
     <% @brands.each() do |brand| %>
     <div class="checkbox">
       <label>
@@ -44,6 +45,20 @@
     <% end %>
     <% end %>
   </div>
+  <div class="form-group">
+     <% if @distributor.brands().any?() %>
+     <label>Delete Brands from <%= @distributor.name() %></label>
+     <% @distributor.brands().each() do |brand| %>
+     <div class="checkbox">
+       <label>
+         <input type="checkbox" name="remove_brand_ids[]" value="<%= brand.id()%>"><%= brand.name()%>
+       </label>
+     </div>
+     <% end %>
+     <% else %>
+     <p>There are no more brands to add to <%= @store.name() %>
+     <% end %>
+   </div>
    <button type="submit" class="btn">Update</button>
  </form>
 
