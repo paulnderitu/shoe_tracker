@@ -49,7 +49,7 @@ require('spec_helper')
     click_button('Update')
     expect(page).to have_no_content('Adidas')
     end
-    
+
     describe('Update a brand path', {:type => :feature}) do
        it('allows the user to view a brand page with distributor names') do
          distributor = Distributor.create(:name => 'Wachira')
@@ -59,4 +59,13 @@ require('spec_helper')
          expect(page).to have_content('Adidas')
        end
      end
+
+    it('allows the user to edit a brand name') do
+    brand = Brand.create(:name => 'Adidas')
+     visit('/brands')
+     click_link('Adidas')
+     fill_in('name', :with => 'Puma')
+     click_button('Edit')
+     expect(page).to have_content('Puma')
+   end
   end
