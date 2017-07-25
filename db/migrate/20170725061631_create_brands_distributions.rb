@@ -1,4 +1,4 @@
-class CreateBrandsMigrations < ActiveRecord::Migration[5.1]
+class CreateBrandsDistributions < ActiveRecord::Migration[5.1]
   def change
     create_table(:brands_distributions) do |t|
       t.column(:brand_id, :integer)
